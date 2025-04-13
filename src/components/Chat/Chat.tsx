@@ -22,8 +22,9 @@ export const Chat = () => {
 
     const storedMessages = localStorage.getItem('chatMessages');
     if (storedMessages) {
-      const parsedMessages = JSON.parse(storedMessages).map((msg: IMessage) => ({
+      const parsedMessages = JSON.parse(storedMessages).map((msg: IMessage, index: number) => ({
         ...msg,
+        id: `${msg.sender}_${msg.timestamp}_${index}`,
         timestamp: new Date(msg.timestamp),
       }));
       parsedMessages.forEach((msg: IMessage) => addMessage(msg));
@@ -37,8 +38,9 @@ export const Chat = () => {
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
 
+    const timestamp = Date.now();
     const userMessage: IMessage = {
-      id: Date.now().toString(),
+      id: `user_${timestamp}_${Math.random().toString(36).substr(2, 9)}`,
       text: inputMessage,
       sender: 'user',
       timestamp: new Date(),
@@ -49,7 +51,7 @@ export const Chat = () => {
 
     setTimeout(() => {
       const botMessage: IMessage = {
-        id: (Date.now() + 1).toString(),
+        id: `bot_${timestamp}_${Math.random().toString(36).substr(2, 9)}`,
         text: botResponses[Math.floor(Math.random() * botResponses.length)],
         sender: 'bot',
         timestamp: new Date(),
