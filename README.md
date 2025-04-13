@@ -1,54 +1,66 @@
-# React + TypeScript + Vite
+# Chat Bot React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um componente de chat interativo desenvolvido com React.js que simula uma conversa com um bot.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interface de chat responsiva
+- Tema claro/escuro
+- Persistência de mensagens no LocalStorage
+- Rolagem automática
+- Animações suaves
+- Respostas aleatórias do bot
+- Suporte a dispositivos móveis
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React.js
+- TypeScript
+- Zustand (gerenciamento de estado)
+- CSS puro (sem frameworks de estilo)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Instalação
+
+1. Clone o repositório:
+```bash
+git clone [url-do-repositorio]
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Instale as dependências:
+```bash
+npm install
 ```
+
+3. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+## Uso
+
+- Digite uma mensagem no campo de texto e pressione Enter ou clique no botão "Enviar"
+- O bot responderá automaticamente com uma mensagem aleatória
+- Clique no ícone de sol/lua no canto superior direito para alternar entre os temas claro e escuro
+- As mensagens são salvas automaticamente e persistem entre recarregamentos da página
+
+## Estrutura do Projeto
+
+```
+src/
+  ├── components/
+  │   └── Chat.tsx        # Componente principal do chat
+  │   └── Chat.css        # Estilos do chat
+  ├── App.tsx             # Componente raiz
+  ├── App.css             # Estilos globais
+  └── main.tsx            # Ponto de entrada da aplicação
+```
+
+## Personalização
+
+O componente pode ser personalizado modificando:
+- As cores no arquivo `Chat.css`
+- As respostas do bot no array `botResponses` em `Chat.tsx`
+- O layout e estilos conforme necessário
+
+## Contribuição
+
