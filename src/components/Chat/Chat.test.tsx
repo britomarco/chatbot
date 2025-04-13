@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { Chat } from './Chat'
 
-// Mock do localStorage
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -9,7 +8,6 @@ const localStorageMock = {
 };
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
-// Mock do CSS Modules
 jest.mock('./Chat.module.css', () => ({
   chatContainer: 'chatContainer',
   light: 'light',
@@ -37,7 +35,7 @@ describe('Chat Component', () => {
     expect(screen.getByText('Enviar')).toBeInTheDocument();
   });
 
-  it('envia mensagem quando o botão é clicado', async () => {
+  it('Should send message when the button is clicked', async () => {
     render(<Chat />);
     const input = screen.getByPlaceholderText('Digite sua mensagem...');
     const button = screen.getByText('Enviar');
@@ -50,7 +48,7 @@ describe('Chat Component', () => {
     });
   });
 
-  it('envia mensagem quando Enter é pressionado', async () => {
+  it('Should send message when Enter is pressed', async () => {
     render(<Chat />);
     const input = screen.getByPlaceholderText('Digite sua mensagem...');
 
@@ -62,7 +60,7 @@ describe('Chat Component', () => {
     });
   });
 
-  it('alterna entre temas claro e escuro', () => {
+  it('Should toggle between light and dark themes', () => {
     render(<Chat />);
     const themeToggle = screen.getByRole('button', { name: '🌙' });
 
@@ -73,11 +71,11 @@ describe('Chat Component', () => {
     expect(themeToggle).toHaveTextContent('🌙');
   });
 
-  it('carrega mensagens salvas do localStorage', () => {
+  it('Should load saved messages from localStorage', () => {
     const savedMessages = [
       {
         id: '1',
-        text: 'Mensagem salva',
+        text: 'Saved message',
         sender: 'user',
         timestamp: new Date().toISOString()
       }
@@ -85,6 +83,6 @@ describe('Chat Component', () => {
     localStorageMock.getItem.mockReturnValue(JSON.stringify(savedMessages));
 
     render(<Chat />);
-    expect(screen.getByText('Mensagem salva')).toBeInTheDocument();
+    expect(screen.getByText('Saved message')).toBeInTheDocument();
   });
 }); 

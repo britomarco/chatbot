@@ -1,12 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Chat.module.css';
-import { useChatStore } from '../store/chatStore';
-import { IMessage } from '../store/IMessage';
-import { botResponses } from '../store/chatStore';
+import { IMessage } from '../../store/IMessage';
+import { botResponses, useChatStore } from '../../store/chatStore.tsx';
+import { ChatHeader } from './ChatHeader';
+import { MessageList } from './MessageList';
+import { ChatInput } from './ChatInput';
 
 export const Chat = () => {
   const [inputMessage, setInputMessage] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const { messages, theme, addMessage, setTheme, setUserId } = useChatStore();
 
   useEffect(() => {
@@ -31,14 +32,7 @@ export const Chat = () => {
 
   useEffect(() => {
     localStorage.setItem('chatMessages', JSON.stringify(messages));
-    scrollToBottom();
   }, [messages]);
-
-  const scrollToBottom = () => {
-    if (messagesEndRef.current && typeof messagesEndRef.current.scrollIntoView === 'function') {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
@@ -71,40 +65,13 @@ export const Chat = () => {
 
   return (
     <div className={`${styles.chatContainer} ${styles[theme]}`}>
-      <div className={styles.chatHeader}>
-        <h2>Chat Bot</h2>
-        <button onClick={toggleTheme} className={styles.themeToggle}>
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
-      </div>
-      
-      <div className={styles.messagesContainer}>
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`${styles.message} ${styles[message.sender]}`}
-          >
-            <div className={styles.messageContent}>
-              {message.text}
-            </div>
-            <div className={styles.messageTimestamp}>
-              {message.timestamp.toLocaleTimeString()}
-            </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-
-      <div className={styles.inputContainer}>
-        <input
-          type="text"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-          placeholder="Digite sua mensagem..."
-        />
-        <button onClick={handleSendMessage}>Enviar</button>
-      </div>
+      <ChatHeader theme={theme} onToggleTheme={toggleTheme} />
+      <MessageList messages={messages} />
+      <ChatInput
+        inputMessage={inputMessage}
+        onInputChange={setInputMessage}
+        onSendMessage={handleSendMessage}
+      />
     </div>
   );
 }; 
