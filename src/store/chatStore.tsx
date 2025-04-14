@@ -20,7 +20,7 @@ export const botResponses = [
 
 export const useChatStore = create<ChatState>((set) => ({
   messages: [],
-  theme: 'light',
+  theme: 'dark',
   userId: null,
   addMessage: (message) => set((state) => ({ messages: [...state.messages, message] })),
   setTheme: (theme) => set({ theme }),

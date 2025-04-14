@@ -69,6 +69,7 @@
 
 .messageContent {
   margin-bottom: 5px;
+  word-break: break-word;
 }
 
 .messageTimestamp {
@@ -78,36 +79,116 @@
 
 .inputContainer {
   display: flex;
-  gap: 10px;
-  padding: 20px 0;
+  align-items: center;
+  padding: 0.5rem;
+  border-top: 1px solid #e9edef;
+  
+  gap: 0.5rem;
 }
 
 .inputContainer input {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #111b21;
+  border: 1px solid #cecece;
+  font-size: 0.9375rem;
+  min-height: 40px;
+  outline: none;
 }
+
 
 .dark .inputContainer input {
   background-color: #2d2d2d;
-  color: #ffffff;
-  border-color: #444;
+    color: #e9edef;
 }
 
 .inputContainer button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #111b21;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s;
+  font-size: 0.9375rem;
+}
+
+.dark .inputContainer button {
+  background-color: #2d2d2d;
+  color: #e9edef;
+}
+
+.light .inputContainer button {
+  background-color: #e9ecef;
+  color: #333;
+}
+
+.light .inputContainer button:hover {
+  background-color: #2d2d2d;
+  color: #e9edef;
 }
 
 .inputContainer button:hover {
-  background-color: #0056b3;
+  background-color: #f0f2f5;
+}
+
+.dark .inputContainer button:hover {
+  background-color: #374045;
+}
+
+.inputContainer button:disabled,
+.inputContainer button.disabledButton {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #e9ecef;
+}
+
+.dark .inputContainer button:disabled,
+.dark .inputContainer button.disabledButton {
+  background-color: #2d2d2d;
+  opacity: 0.5;
+}
+
+.audioButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  color: #54656f;
+  transition: color 0.2s;
+}
+
+.dark .audioButton {
+  color: #8696a0;
+}
+
+.audioButton:hover {
+  color: #111b21;
+}
+
+.dark .audioButton:hover {
+  color: #e9edef;
+}
+
+.audioButton.recording {
+  color: #dc3545;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeIn {
