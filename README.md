@@ -12,6 +12,7 @@ Um app de chat interativo desenvolvido com React.js que simula uma conversa com 
 
 ## Como rodar o projeto
 
+Usar yarn para rodar o projeto
 
 1. Instale as dependências:
 ```bash
