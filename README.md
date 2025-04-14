@@ -15,13 +15,19 @@ Um app de chat interativo desenvolvido com React.js que simula uma conversa com 
 
 1. Instale as dependências:
 ```bash
-npm install
+yarn install
 ```
 
 2. Inicie o servidor de desenvolvimento:
 ```bash
-npm run dev
+yarn  dev
 ```
+
+3. Para rodar os testes 
+```bash
+    yarn  test
+```
+
 
 ## Uso
 
