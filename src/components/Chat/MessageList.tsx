@@ -22,8 +22,8 @@ export const MessageList = ({ messages }: MessageListProps) => {
 
   return (
     <div className={styles.messagesContainer}>
-      {messages.map((message) => (
-        <Message key={message.id} message={message} />
+      {messages.map((message, index) => (
+        <Message key={index} message={message} />
       ))}
       <div ref={messagesEndRef} />
     </div>

@@ -8,6 +8,7 @@ import { ChatInput } from './ChatInput';
 
 export const Chat = () => {
   const [inputMessage, setInputMessage] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
   const { messages, theme, addMessage, setTheme, setUserId } = useChatStore();
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export const Chat = () => {
 
     setTimeout(() => {
       const botMessage: IMessage = {
-        id: `bot_${timestamp}_${Math.random().toString(36).substr(2, 9)}`,
+        id: `bot_${timestamp}_${Math.random().toString(36).substring(2, 9)}`,
         text: botResponses[Math.floor(Math.random() * botResponses.length)],
         sender: 'bot',
         timestamp: new Date(),
@@ -73,6 +74,8 @@ export const Chat = () => {
         inputMessage={inputMessage}
         onInputChange={setInputMessage}
         onSendMessage={handleSendMessage}
+        isRecording={isRecording}
+        onRecordingChange={setIsRecording}
       />
     </div>
   );
