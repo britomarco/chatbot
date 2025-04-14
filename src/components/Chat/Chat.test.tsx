@@ -62,13 +62,13 @@ describe('Chat Component', () => {
 
   it('Should toggle between light and dark themes', () => {
     render(<Chat />);
-    const themeToggle = screen.getByRole('button', { name: '🌙' });
-
-    fireEvent.click(themeToggle);
-    expect(themeToggle).toHaveTextContent('☀️');
+    const themeToggle = screen.getByRole('button', { name: '☀️' });
 
     fireEvent.click(themeToggle);
     expect(themeToggle).toHaveTextContent('🌙');
+
+    fireEvent.click(themeToggle);
+    expect(themeToggle).toHaveTextContent('☀️');
   });
 
   it('Should load saved messages from localStorage', () => {
@@ -85,4 +85,5 @@ describe('Chat Component', () => {
     render(<Chat />);
     expect(screen.getByText('Saved message')).toBeInTheDocument();
   });
+
 }); 

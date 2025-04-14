@@ -32,6 +32,8 @@ npm run dev
 - As mensagens são salvas automaticamente e persistem entre recarregamentos da página
 
 
-Utilizei css modules pelo conhecimento prévio e também pela necessidade, nao vi sentido em usar o tailwind para esse pequeno projeto. E o Styled components está descontinuado
+Utilizei css modules pelo conhecimento prévio e também pela necessidade e por uma boa perfomance entre troca dos temas, nao vi sentido em usar o tailwind para esse pequeno projeto. E o Styled components está descontinuado.
+
+Utilizei o zustand pela facilidade e suportaria bem o projeto a escalabidade do projeto.
 
 
